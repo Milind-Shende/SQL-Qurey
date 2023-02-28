@@ -2,74 +2,80 @@
 
 ----------------------------------------------------
 #Dataset Used:cricket1.csv and cricket2.csv
+
 ----cricket1 is the table for cricket test match 1.
+
 ----cricket2 is the table for cricket test match 2.
+
 ----------------------------------------------------
 
 # Q1.Find All The Player who were present in the test match 1 or test match 2?
 
-SELECT * FROM cricket1
+**SELECT * FROM cricket1
 UNION
-SELECT * FROM cricket2;
+SELECT * FROM cricket2;**
 
 # Q2.Write a MySQl query to find the player from the test match 1 having Popularity higher than the average Popularity.
-SELECT Player_Name,Popularity from cricket1 WHERE Popularity > (SELECT AVG(Popularity) FROM cricket1);
+**SELECT Player_Name,Popularity from cricket1 WHERE Popularity > (SELECT AVG(Popularity) FROM cricket1);**
 
 # Q3.Find Player_Id and Player_Name That are Common in the test match 1 and test match 2?
-SELECT Player_Id ,Player_Name FROM cricket1 WHERE cricket1.Player_Id IN (SELECT Player_ID FROM cricket2);
+**SELECT Player_Id ,Player_Name FROM cricket1 WHERE cricket1.Player_Id IN (SELECT Player_ID FROM cricket2);**
 
 # Q4.Retrive Player_Id ,Runs and Player_Name from cricket1 table and display list of the players where the runs are more than the average runs.
-SELECT Player_Id,Runs,Player_Name FROM cricket1 WHERE RUNS>(SELECT AVG(RUNS) FROM cricket1);
+**SELECT Player_Id,Runs,Player_Name FROM cricket1 WHERE RUNS>(SELECT AVG(RUNS) FROM cricket1);**
 
 # Q5.Write a query to extract the player_id ,Runs, player_name from the table "cricket1" where the runs are grater than 50?
-SELECT Player_Id,Runs,Player_Name FROM cricket1 WHERE RUNS>50;
+**SELECT Player_Id,Runs,Player_Name FROM cricket1 WHERE RUNS>50;**
 
 # Q6.Write a query to extract all the columns from cricket1 where player_name starts with "y" and endes with "v".?
-SELECT * FROM cricket1 WHERE Player_Name LIKE 'y%v';
+**SELECT * FROM cricket1 WHERE Player_Name LIKE 'y%v';**
 
 # Q7.Write a query to extract all the columns from cricket1 where player_name does not end with 't'?
-SELECT * FROM cricket1 WHERE Player_Name NOT LIKE '%t';
+**SELECT * FROM cricket1 WHERE Player_Name NOT LIKE '%t';**
 
 --------------------------------------------------------
 # Dataset Used :New_cricket.csv
 --------------------------------------------------------
 
 # Q1. Extract the Player_Id and Player_Name of the Players where the Charisma value is Null.
-SELECT Player_ID,Player_Name FROM new_cricket where Charisma IS NULL;
+**SELECT Player_ID,Player_Name FROM new_cricket where Charisma IS NULL;**
 
-#Q2. Separate all Player_Id into single Numeric Ids(Example PL1=1)
+# Q2. Separate all Player_Id into single Numeric Ids(Example PL1=1)
+**SELECT Player_Id,SUBSTR(Player_Id,3)**
 
-#Q3.Write a MYSQl query to extract player_id player_Name and charisma where the charisma is greater than 25?
-SELECT Player_Id,Player_Name FROM new_cricket where Charisma >25;
+# Q3.Write a MYSQl query to extract player_id player_Name and charisma where the charisma is greater than 25?
+**SELECT Player_Id,Player_Name FROM new_cricket where Charisma >25;**
 
 
 --------------------------------------------------------
 # Q1. Create a Database Bank
-Sol:- CREATE DATABASE BANK;
-USE BANK;
+**Sol:- CREATE DATABASE BANK;**
+**USE BANK;**
 
 # Q2. Create a Table with the name "Bank_details" with the following Columns
----Produt With String data_type
+
+**---Produt With String data_type
 ---Quantity with Numerical Data_type
 ---Price With real Number data_type
 ---Purchase_Cost with decimal data_type 
----Estimated_sale_price with float data_type
+---Estimated_sale_price with float data_type**
 
-Sol:-
+**Sol:-
 create table bank_details(
 Product char(10),
 Quantity int,
 Price real,
 Purchase_cost decimal(6,2),
 Estimated_sale_price float
-); 
+);** 
 
 # Q3. Dispaly all columns and their datatype and size in bank_deatils
 
-Sol:-Describe bank_details;
+**Sol:-Describe bank_details;**
 
 # Q4.Insert two records into Bank_details.
-----1st record with Values--
+
+**----1st record with Values--
 			---Product:PayCard
 			---Quantity:3
 			---Price:330
@@ -80,60 +86,68 @@ Sol:-Describe bank_details;
 			---Quantity:4
 			---Price:200
 			---Purchase_cost:8000
-			---Estimated_sale_price:6800
+			---Estimated_sale_price:6800**
 
-Sol:-
+**Sol:-
 insert into bank_details values('PayCard',3,330,8008,9009);
-insert into bank_details values('PayPoint',4,200,8000,6800);
+insert into bank_details values('PayPoint',4,200,8000,6800);**
 
 # Q5.Add a column Geo Location to the Bank_details table with data_type varchar and size 20?
-Sol:- ALTER table bank_details add Geo_location varchar(20);
+
+**Sol:- ALTER table bank_details add Geo_location varchar(20);**
 
 # Q6.What is the value of Geo_location for product "PayCard"?
-Sol:- select Geo_location from bank_details where Product="PayCard";
+
+**Sol:- select Geo_location from bank_details where Product="PayCard";**
 
 # Q7.How Many Character does the Product "PayCard" have in the bank_details table?
-Sol:- select char_length(Product) from bank_details where Product="PayCard";
+
+**Sol:- select char_length(Product) from bank_details where Product="PayCard";**
 
 # Q8.Alter the Product field from char to varchar in bank_details?
-Sol:-alter table bank_details modify Product varchar(10);
+
+**Sol:-alter table bank_details modify Product varchar(10);**
 
 # Q9.Reduce the size of the Product field from 10 to 6 and check if it is possible?
-Sol:-Product name size can be greater than 9 then only it can be possible
-alter table bank_details modify Product varchar(9);
+
+**Sol:-Product name size can be greater than 9 then only it can be possible
+alter table bank_details modify Product varchar(9);**
 
 # Q10.Dispaly Output of Product Field as NEW_Product in Bank_details?
-Sol:- select product as NEW_PRODUCT from bank_details;
+
+**Sol:- select product as NEW_PRODUCT from bank_details;**
 
 # Q11.Display only one Record from Bank_details
-Sol:- select * from bank_details limit 1
+
+**Sol:- select * from bank_details limit 1**
 
 # Q12.Display the first five character of Geo_loaction field of bank_details?
-Sol:- select substr(Geo_location,1,5) FROM bank_details;
+
+**Sol:- select substr(Geo_location,1,5) FROM bank_details;**
 
 -------------------------------------------------------------------------
 
 # Q1. Create a table named as Bank_Holidays with below fields
----a.Holiday field which displays only date.
----b.Start time field which display hours and minutes.
----c.End_time field which also displays hours and minutes and timezone.
 
-Sol:- 
+**---a.Holiday field which displays only date.
+---b.Start time field which display hours and minutes.
+---c.End_time field which also displays hours and minutes and timezone.**
+
+**Sol:- 
 create table Bank_holidays(
 Hoildays date,
 Start_time datetime,
 End_time timestamp
-);
+);**
 
-# Q2.Step 1.Insert Todays Date details in all fields of bank_holidays.
-     Step 2.After step 1 perform the below
-	    Postpone Hoildays to next day by Updating the Holidays field
-Sol:-
+# Q2.Step 1.Insert Todays Date details in all fields of bank_holidays.Step 2.After step 1 perform the below.Postpone Hoildays to next day by Updating the Holidays field?
+
+**Sol:-
 Step 1.insert into bank_holidays values(current_date(),current_date(),current_date());
        select * from bank_holidays;
-Step 2.update bank_holidays set holidays=date_add(holidays,INTERVAL 8 day);
+Step 2.update bank_holidays set holidays=date_add(holidays,INTERVAL 8 day);**
 
 # Q3.Update the End_time with current European time
 
-sol:- update Bank_holidays set End_time=utc_timestamp();
+**sol:- update Bank_holidays set End_time=utc_timestamp();**
 
